@@ -2,7 +2,20 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { uniqueId } from 'lodash';
 
 import Criterion from '../criterion';
-import { Header, DataX } from '../results-table';
+import { Header } from '../results-table';
+import { buildCriteria } from '../../models/criterion';
+
+const ResultsTablePreview = ({ criteria: criteriaProps }) => {
+  const [criteria, headerRows] = buildCriteria(criteriaProps);
+
+  return (
+    <table className='table table-bordered table-hover border-dark'>
+      <thead className='align-middle text-center'>
+        <Header rows={headerRows} criteria={criteria} />
+      </thead>
+    </table>
+  );
+};
 
 const CriteriaList = ({ nextStep, criteria, setCriteria }) => {
   const addCriterion = () =>
@@ -55,14 +68,7 @@ const CriteriaList = ({ nextStep, criteria, setCriteria }) => {
 
       <h1 className='mt-4 mb-2'>Попередній перегляд таблиці</h1>
 
-      <table className='table table-bordered  table-hover  border-dark'>
-        <thead className='align-middle text-center'>
-          <Header criteria={criteria} />
-        </thead>
-        <tbody className='align-middle text-center'>
-          <DataX criteria={criteria} />
-        </tbody>
-      </table>
+      <ResultsTablePreview criteria={criteria} />
     </div>
   );
 };
