@@ -2,7 +2,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { uniqueId } from 'lodash';
 
 import Criterion from '../criterion';
-import { Header } from '../results-table';
+import { Header, DataX } from '../results-table';
 
 const CriteriaList = ({ nextStep, criteria, setCriteria }) => {
   const addCriterion = () =>
@@ -59,6 +59,9 @@ const CriteriaList = ({ nextStep, criteria, setCriteria }) => {
         <thead className='align-middle text-center'>
           <Header criteria={criteria} />
         </thead>
+        <tbody className='align-middle text-center'>
+          <DataX criteria={criteria} />
+        </tbody>
       </table>
     </div>
   );

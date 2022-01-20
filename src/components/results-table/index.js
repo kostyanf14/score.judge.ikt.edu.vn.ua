@@ -38,6 +38,29 @@ export const Header = ({ criteria }) => <>
   </tr>
 </>;
 
+const CODES = ['AA1111', 'AB1234', 'XY2345', 'ZZ9999']
+
+export const DataX = ({ criteria }) => <>
+  {CODES.map(( cd ) => <tr>
+    <td>{cd}</td>
+    {criteria.map(({ limit, color }) => <td className={color}>
+      <div className="input-group">
+        <input className="form-control" type='number' style={{minWidth: '80px'}} max={limit} />
+      </div>
+    </td>)}
+    <td>
+      <div className="input-group">
+        100.0
+      </div>
+    </td>
+    <td>
+      <div className="input-group">
+        <input className="form-control" style={{minWidth: '128px'}} value="No tasks" />
+      </div>
+    </td>
+  </tr>)}
+</>;
+
 
 const ResultsTable = ({ criteria }) => (
   <div className='p-2'>
@@ -45,6 +68,9 @@ const ResultsTable = ({ criteria }) => (
       <thead className='align-middle text-center'>
         <Header criteria={criteria} />
       </thead>
+      <tbody className='align-middle text-center'>
+        <DataX criteria={criteria} />
+      </tbody>
     </table>
   </div>
 );
