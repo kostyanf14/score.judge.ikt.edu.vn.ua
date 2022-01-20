@@ -55,7 +55,7 @@ const CriteriaList = ({ nextStep, criteria, setCriteria }) => {
 
       <h1 className='mt-4 mb-2'>Попередній перегляд таблиці</h1>
 
-      <table className='table table-bordered border-dark'>
+      <table className='table table-bordered  table-hover  border-dark'>
         <thead className='align-middle text-center'>
           <Header criteria={criteria} />
         </thead>

@@ -64,7 +64,7 @@ export const DataX = ({ criteria }) => <>
 
 const ResultsTable = ({ criteria }) => (
   <div className='p-2'>
-    <table className='table table-bordered border-dark'>
+    <table className='table table-bordered table-hover border-dark'>
       <thead className='align-middle text-center'>
         <Header criteria={criteria} />
       </thead>
