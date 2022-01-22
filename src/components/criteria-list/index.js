@@ -9,7 +9,7 @@ const ResultsTablePreview = ({ criteria: criteriaProps }) => {
   const [criteria, headerRows] = buildCriteria(criteriaProps);
 
   return (
-    <table className='table table-bordered table-hover border-dark'>
+    <table className='table table-bordered table-hover border-dark with-sticky'>
       <thead className='align-middle text-center'>
         <Header rows={headerRows} criteria={criteria} />
       </thead>

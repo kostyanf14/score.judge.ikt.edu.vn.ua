@@ -14,15 +14,15 @@ class Criterion {
   }
 }
 
-const buildInfoCell = (text, maxDepth) =>
-  ({ text, key: text, rowSpan: maxDepth + 1, className: 'bg-info bg-opacity-50' });
+const buildInfoCell = (text, maxDepth, className = 'bg-info bg-opacity-50') =>
+  ({ text, key: text, rowSpan: maxDepth + 1, className });
 
 export const buildCriteria = props => {
   const criteria = props.map(p => new Criterion(p));
   const maxDepth = Math.max.apply(null, criteria.map(c => c.nameLevels.length));
 
   const headerRows = Array.from({ length: maxDepth + 1 }, () => []);
-  headerRows[0].push(buildInfoCell('Код', maxDepth));
+  headerRows[0].push(buildInfoCell('Код', maxDepth, 'bg-info sticky-left'));
 
   const colors = new RoundRobinIterator(['primary', 'secondary', 'success', 'warning']);
 

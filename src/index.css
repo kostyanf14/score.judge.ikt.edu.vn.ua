@@ -1,0 +1,17 @@
+.sticky-left {
+  position: sticky;
+  left: 0;
+  z-index: 1019;
+}
+
+.table.with-sticky {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-style: solid;
+  border-width: 1px 0 0 1px;
+}
+
+.table.with-sticky td,
+.table.with-sticky th {
+  border-width: 0 1px 1px 0;
+}
