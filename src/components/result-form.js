@@ -6,9 +6,8 @@ import api, { clientId } from '../api/action-cable';
 import resultsSlice from '../state/results';
 
 const ResultForm = ({ user, criterion, max }) => {
-  const key = `${user}:${criterion}`;
-  const result = useSelector(s => s.results[key], shallowEqual);
-  const lockedId = useSelector(s => s.locks[key]);
+  const result = useSelector(s => s.results[user]?.[criterion], shallowEqual);
+  const lockedId = useSelector(s => s.locks[`${user}:${criterion}`]);
   const dispatch = useDispatch();
   const [focused, setFocused] = useState(false);
 

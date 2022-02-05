@@ -2,6 +2,7 @@ import { shallowEqual, useSelector } from 'react-redux';
 
 import Header from '../components/results-table-header';
 import ResultForm from '../components/result-form';
+import UserSum from '../components/user-sum';
 import { buildCriteria } from '../models/criterion';
 
 export const DataX = ({ users, criteria }) => <>
@@ -14,9 +15,7 @@ export const DataX = ({ users, criteria }) => <>
         </td>
       ))}
       <td>
-        <div className='input-group'>
-          100.0
-        </div>
+        <UserSum user={secret} />
       </td>
       <td>
         <div className='input-group'>
