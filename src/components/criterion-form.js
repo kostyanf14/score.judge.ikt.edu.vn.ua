@@ -7,6 +7,7 @@ import criteriaSlice from '../state/criteria';
 
 const CriterionForm = ({ id }) => {
   const { name, limit, dirty } = useSelector(s => s.criteria.find(c => c.id === id), shallowEqual);
+  const deleteDisabled = useSelector(s => Object.values(s.results).some(r => r[id]))
   const dispatch = useDispatch();
 
   const performDelete = useCallback(
@@ -40,7 +41,7 @@ const CriterionForm = ({ id }) => {
       <label>Кількість балів</label>
     </div>
 
-    <button className='btn btn-outline-secondary align-self-stretch' onClick={performDelete}>
+    <button className='btn btn-outline-secondary align-self-stretch' disabled={deleteDisabled} onClick={performDelete}>
       <Trash />
     </button>
   </div>;
