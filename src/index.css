@@ -43,3 +43,8 @@
 .status-notice__success {
   background-color: rgba(25, 135, 84, 0.9);
 }
+
+*:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
