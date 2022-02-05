@@ -22,6 +22,11 @@ const CriteriaEditPage = ({ next }) => {
     [dispatch]
   );
 
+  const handleNext = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    next();
+  }, [next]);
+
   return (
     <div className='p-2'>
       <h1 className='mb-2'>Критерії</h1>
@@ -47,7 +52,7 @@ const CriteriaEditPage = ({ next }) => {
 
       <div className='d-grid gap-2 mt-1'>
         <button className='btn btn-primary' onClick={addCriterion}>Додати критерій</button>
-        <button className='btn btn-secondary' onClick={next} disabled={nextDisabled}>Далі</button>
+        <button className='btn btn-secondary' onClick={handleNext} disabled={nextDisabled}>Далі</button>
       </div>
 
       <h1 className='mt-4 mb-2'>Попередній перегляд таблиці</h1>
