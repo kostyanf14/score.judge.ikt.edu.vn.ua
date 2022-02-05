@@ -1,15 +1,8 @@
 import { shallowEqual, useSelector } from 'react-redux';
-import { buildCriteria } from '../../models/criterion';
 
-export const Header = ({ rows }) => <>
-  {rows.map((row, i) => (
-    <tr key={i}>
-      {row.map(({ key, text, className, colSpan, rowSpan }) => (
-        <th key={key} className={className} colSpan={colSpan} rowSpan={rowSpan}>{text}</th>
-      ))}
-    </tr>
-  ))}
-</>;
+import Header from '../components/results-table-header';
+import ResultForm from '../components/result-form';
+import { buildCriteria } from '../models/criterion';
 
 export const DataX = ({ users, criteria }) => <>
   {users.map(secret => (
@@ -17,9 +10,7 @@ export const DataX = ({ users, criteria }) => <>
       <td className='sticky-left bg-info'>{secret}</td>
       {criteria.map(criterion => (
         <td key={criterion.id} className={criterion.className}>
-          <div className='input-group'>
-            <input className='form-control' type='number' style={{ width: 80 }} min={0} max={criterion.limit} />
-          </div>
+          <ResultForm user={secret} criterion={criterion.id} max={criterion.limit} />
         </td>
       ))}
       <td>
@@ -36,7 +27,7 @@ export const DataX = ({ users, criteria }) => <>
   ))}
 </>;
 
-const ResultsTable = () => {
+const ResultsEditPage = () => {
   const users = useSelector(s => s.users);
   const criteriaProps = useSelector(s => s.criteria, shallowEqual);
   const [criteria, headerRows] = buildCriteria(criteriaProps);
@@ -53,4 +44,4 @@ const ResultsTable = () => {
   );
 };
 
-export default ResultsTable;
+export default ResultsEditPage;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import CriteriaEditPage from './pages/criteria-edit-page';
-import ResultsTable from './components/results-table';
+import ResultsEditPage from './pages/results-edit-page';
 
 const App = () => {
   const isReady = useSelector(s => s.app.isReady);
@@ -17,7 +17,7 @@ const App = () => {
       return <CriteriaEditPage next={() => setStep('results')} />;
 
     case 'results':
-      return <ResultsTable />;
+      return <ResultsEditPage />;
 
     default:
       return null;

@@ -1,4 +1,4 @@
-import { Header } from './results-table';
+import Header from './results-table-header';
 import { buildCriteria } from '../models/criterion';
 import { shallowEqual, useSelector } from 'react-redux';
 

@@ -19,3 +19,27 @@
 :root {
   --toastify-toast-width: 60%;
 }
+
+.status-notice {
+  position: absolute;
+  top: 100%;
+  z-index: 5;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.1rem;
+  font-size: 0.875rem;
+  color: #fff;
+  border-radius: 0.25rem;
+}
+
+.status-notice__danger {
+  background-color: rgba(220, 53, 69, 0.9);
+}
+
+.status-notice__warning {
+  background-color: rgba(255, 193, 7, 0.9);
+}
+
+.status-notice__success {
+  background-color: rgba(25, 135, 84, 0.9);
+}
