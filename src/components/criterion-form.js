@@ -1,37 +1,42 @@
-import { useState, useContext } from 'react';
+import { useCallback, useEffect } from 'react';
 import { GripVertical, Trash } from 'react-bootstrap-icons';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import ApiContext from '../api/context';
+import api from '../api/action-cable';
+import criteriaSlice from '../state/criteria';
 
-const CriterionForm = ({ criterion }) => {
-  const apiPerform = useContext(ApiContext);
-  const [name, setName] = useState(criterion.name);
-  const [limit, setLimit] = useState(criterion.limit);
-  const { id } = criterion;
+const CriterionForm = ({ id }) => {
+  const { name, limit, dirty } = useSelector(s => s.criteria.find(c => c.id === id), shallowEqual);
+  const dispatch = useDispatch();
 
-  const performUpdate = () => apiPerform('update_criterion', { id, params: { name, limit } });
-  const performDelete = () => apiPerform('delete_criterion', { id });
+  const performDelete = useCallback(
+    () => api.perform('delete_criterion', { id }),
+    [id]
+  );
+  const onNameChange = useCallback(
+    e => dispatch(criteriaSlice.actions.dirtyUpdate({ id, name: e.target.value })),
+    [id, dispatch]
+  );
+  const onLimitChange = useCallback(
+    e => dispatch(criteriaSlice.actions.dirtyUpdate({ id, limit: e.target.valueAsNumber })),
+    [id, dispatch]
+  );
+
+  useEffect(
+    () => dirty && api.perform('update_criterion', { id, token: dirty, params: { name, limit } }),
+    [id, name, limit, dirty]
+  );
 
   return <div className='d-flex gap-2 py-1 align-items-center bg-white'>
     <GripVertical size='25' />
 
     <div className='flex-grow-1 form-floating'>
-      <input
-        className='form-control'
-        type='text'
-        value={name}
-        onChange={e => setName(e.target.value)}
-        onBlur={performUpdate} />
+      <input className='form-control' type='text' value={name} min={0} onChange={onNameChange} />
       <label>Назва критерію</label>
     </div>
 
     <div className='flex-grow-1 form-floating'>
-      <input
-        className='form-control'
-        type='number'
-        value={limit}
-        onChange={e => setLimit(e.target.valueAsNumber)}
-        onBlur={performUpdate} />
+      <input className='form-control' type='number' value={limit} min={0} onChange={onLimitChange} />
       <label>Кількість балів</label>
     </div>
 

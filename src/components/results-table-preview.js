@@ -1,7 +1,11 @@
 import { Header } from './results-table';
 import { buildCriteria } from '../models/criterion';
+import { shallowEqual, useSelector } from 'react-redux';
 
-const ResultsTablePreview = ({ criteria: criteriaProps }) => {
+const ResultsTablePreview = () => {
+  const criteriaProps = useSelector(s => s.criteria, shallowEqual);
+  if (!criteriaProps.length) return null;
+
   const [criteria, headerRows] = buildCriteria(criteriaProps);
   return (
     <table className='table table-bordered table-hover border-dark with-sticky'>

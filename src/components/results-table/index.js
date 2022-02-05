@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 import { buildCriteria } from '../../models/criterion';
 
 export const Header = ({ rows }) => <>
@@ -38,7 +38,7 @@ export const DataX = ({ users, criteria }) => <>
 
 const ResultsTable = () => {
   const users = useSelector(s => s.users);
-  const criteriaProps = useSelector(s => s.criteria);
+  const criteriaProps = useSelector(s => s.criteria, shallowEqual);
   const [criteria, headerRows] = buildCriteria(criteriaProps);
 
   return (
