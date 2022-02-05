@@ -18,7 +18,7 @@ const CriterionForm = ({ id }) => {
     [id, dispatch]
   );
   const onLimitChange = useCallback(
-    e => dispatch(criteriaSlice.actions.dirtyUpdate({ id, limit: e.target.valueAsNumber })),
+    e => dispatch(criteriaSlice.actions.dirtyUpdate({ id, limit: e.target.value })),
     [id, dispatch]
   );
 

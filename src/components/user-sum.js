@@ -3,7 +3,7 @@ import { round } from 'lodash';
 
 const UserSum = ({ user }) => {
   const values = useSelector(
-    s => s.results[user] && Object.values(s.results[user]).map(r => r.value).filter(x => x),
+    s => s.results[user] && Object.values(s.results[user]).map(r => r.value).filter(x => x).map(parseFloat),
     shallowEqual
   );
   const sum = values?.reduce((x, y) => x + y, 0);
