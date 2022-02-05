@@ -10,11 +10,11 @@ class Criterion {
   }
 
   setColor(value) {
-    this.className = value && `bg-${value} bg-opacity-50`;
+    this.className = value && `bg-${value} bg-opacity-25`;
   }
 }
 
-const buildInfoCell = (text, maxDepth, className = 'bg-info bg-opacity-50') =>
+const buildInfoCell = (text, maxDepth, className = 'bg-info bg-opacity-25') =>
   ({ text, key: text, rowSpan: maxDepth + 1, className });
 
 export const buildCriteria = props => {
@@ -60,7 +60,7 @@ export const buildCriteria = props => {
   headerRows[0].push(buildInfoCell('Коментар', maxDepth));
   headerRows[maxDepth] = criteria.map(({ id, limit, className }) => ({ key: id, text: limit, className }));
   const sum = criteria.map(item => item.limit).filter(x => x).reduce((prev, next) => prev + parseFloat(next));
-  headerRows[maxDepth].push({ key: 'id', text: sum, className: 'bg-info bg-opacity-50' })
+  headerRows[maxDepth].push({ key: 'id', text: sum, className: 'bg-info bg-opacity-25' })
 
   return [criteria, headerRows.map(compact)];
 };
