@@ -9,6 +9,7 @@ import criteriaSlice from '../state/criteria';
 
 const CriteriaEditPage = ({ next }) => {
   const criteriaIds = useSelector(s => s.criteria.map(c => c.id), shallowEqual);
+  const nextDisabled = useSelector(s => s.criteria.some(c => c.dirty));
   const dispatch = useDispatch();
 
   const addCriterion = useCallback(() => api.perform('add_criterion'), []);
@@ -46,7 +47,7 @@ const CriteriaEditPage = ({ next }) => {
 
       <div className='d-grid gap-2 mt-1'>
         <button className='btn btn-primary' onClick={addCriterion}>Додати критерій</button>
-        <button className='btn btn-secondary' onClick={next}>Далі</button>
+        <button className='btn btn-secondary' onClick={next} disabled={nextDisabled}>Далі</button>
       </div>
 
       <h1 className='mt-4 mb-2'>Попередній перегляд таблиці</h1>
