@@ -2,6 +2,7 @@ import { shallowEqual, useSelector } from 'react-redux';
 
 import Header from '../components/results-table-header';
 import ResultForm from '../components/result-form';
+import CommentForm from '../components/comment-form';
 import UserSum from '../components/user-sum';
 import { buildCriteria } from '../models/criterion';
 
@@ -18,9 +19,7 @@ export const DataX = ({ users, criteria }) => <>
         <UserSum user={secret} />
       </td>
       <td>
-        <div className='input-group'>
-          <input className='form-control' style={{ width: 400 }} value='No tasks' />
-        </div>
+        <CommentForm user={secret} />
       </td>
     </tr>
   ))}

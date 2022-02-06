@@ -7,6 +7,7 @@ import users from './users';
 import errors from './errors';
 import locks from './locks';
 import results from './results';
+import comments from './comments';
 
 const store = configureStore({
   reducer: combineReducers({
@@ -16,6 +17,7 @@ const store = configureStore({
     errors: errors.reducer,
     locks: locks.reducer,
     results: results.reducer,
+    comments: comments.reducer,
   })
 });
 
