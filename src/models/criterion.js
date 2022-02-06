@@ -59,7 +59,7 @@ export const buildCriteria = props => {
   headerRows[0].push(buildInfoCell('Cума', maxDepth - 1));
   headerRows[0].push(buildInfoCell('Коментар', maxDepth));
   headerRows[maxDepth] = criteria.map(({ id, limit, className }) => ({ key: id, text: limit, className }));
-  const sum = criteria.map(item => item.limit).filter(x => x).reduce((prev, next) => prev + parseFloat(next));
+  const sum = criteria.map(item => item.limit).filter(x => x).reduce((prev, next) => prev + parseFloat(next), 0);
   headerRows[maxDepth].push({ key: 'id', text: sum, className: 'bg-info bg-opacity-25' })
 
   return [criteria, headerRows.map(compact)];
