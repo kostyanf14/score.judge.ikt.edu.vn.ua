@@ -11,8 +11,8 @@ const CriterionForm = ({ id }) => {
   const dispatch = useDispatch();
 
   const performDelete = useCallback(
-    () => api.perform('delete_criterion', { id }),
-    [id]
+    () => window.confirm(`Are you sure you want to delete criterion "${name}"?`) && api.perform('delete_criterion', { id }),
+    [name, id]
   );
   const onNameChange = useCallback(
     e => dispatch(criteriaSlice.actions.dirtyUpdate({ id, name: e.target.value })),
