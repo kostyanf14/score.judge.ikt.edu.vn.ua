@@ -8,12 +8,12 @@ const slice = createSlice({
       return payload;
     },
 
-    acquire: (state, { payload: { user, criterion, client_id } }) => {
-      state[`${user}:${criterion}`] = client_id;
+    acquire: (state, { payload: { lock, client_id } }) => {
+      state[lock] = client_id;
     },
 
-    release: (state, { payload: { user, criterion } }) => {
-      delete state[`${user}:${criterion}`];
+    release: (state, { payload: { lock } }) => {
+      delete state[lock];
     }
   }
 });

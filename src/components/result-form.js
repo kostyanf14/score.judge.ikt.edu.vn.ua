@@ -6,8 +6,9 @@ import api, { clientId } from '../api/action-cable';
 import resultsSlice from '../state/results';
 
 const ResultForm = ({ user, criterion, max }) => {
+  const lock = `${user}:${criterion}`;
   const result = useSelector(s => s.results[user]?.[criterion], shallowEqual);
-  const lockedId = useSelector(s => s.locks[`${user}:${criterion}`]);
+  const lockedId = useSelector(s => s.locks[lock]);
   const dispatch = useDispatch();
   const [focused, setFocused] = useState(false);
 
@@ -22,19 +23,19 @@ const ResultForm = ({ user, criterion, max }) => {
   });
 
   const onFocus = useCallback(
-    () => { setFocused(true); api.perform('acquire_lock', { user, criterion }); },
-    [user, criterion, setFocused]
+    () => { setFocused(true); api.perform('acquire_lock', { lock }); },
+    [lock, setFocused]
   );
 
   const onBlur = useCallback(
-    () => { setFocused(false); api.perform('release_lock', { user, criterion }); },
-    [user, criterion, setFocused]
+    () => { setFocused(false); api.perform('release_lock', { lock }); },
+    [lock, setFocused]
   );
 
   const onChange = useCallback(
     e => {
       if (!focused || lockAcquired)
-        dispatch(resultsSlice.actions.dirtyUpdate({ user, criterion, value: e.target.value }))
+        dispatch(resultsSlice.actions.dirtyUpdate({ user, criterion, value: e.target.value }));
     },
     [user, criterion, dispatch, focused, lockAcquired]
   );
