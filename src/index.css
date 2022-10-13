@@ -48,3 +48,8 @@
   cursor: not-allowed;
   pointer-events: all !important;
 }
+
+.table-hover>tbody>tr:hover>* {
+  --bs-table-accent-bg: hsl(238deg 100% 75%);
+  border-width: 1px 2px 2px 0;
+}
