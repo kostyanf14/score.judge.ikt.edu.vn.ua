@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import store from '../state';
 
 export const clientId = uuidv4();
-const task = window.location.pathname.slice(1);
+export const task = window.location.pathname.slice(1);
 const password = prompt('Enter judge password');
 const url = `${process.env.REACT_APP_API_ENDPOINT}?password=${password}&task_id=${task}&client_id=${clientId}`;
 const consumer = createConsumer(url);

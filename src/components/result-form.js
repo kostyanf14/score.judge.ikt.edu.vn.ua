@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
-import api, { clientId } from '../api/action-cable';
+import api, { clientId, task } from '../api/action-cable';
 import resultsSlice from '../state/results';
 
 const ResultForm = ({ user, criterion, max }) => {
-  const lock = `${user}:${criterion}`;
+  const lock = `${task}:${user}:${criterion}`;
   const result = useSelector(s => s.results[user]?.[criterion], shallowEqual);
   const lockedId = useSelector(s => s.locks[lock]);
   const dispatch = useDispatch();

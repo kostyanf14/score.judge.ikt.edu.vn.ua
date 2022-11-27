@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
-import api, { clientId } from '../api/action-cable';
+import api, { clientId, task } from '../api/action-cable';
 import commentsSlice from '../state/comments';
 
 const ResultForm = ({ user }) => {
-  const lock = `${user}:comment`;
+  const lock = `${task}:${user}:comment`;
   const commment = useSelector(s => s.comments[user]);
   const lockedId = useSelector(s => s.locks[lock]);
   const dispatch = useDispatch();
