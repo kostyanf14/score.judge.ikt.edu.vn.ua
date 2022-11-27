@@ -8,12 +8,12 @@ import commentsSlice from '../state/comments';
 
 const ResultForm = ({ user }) => {
   const lock = `${task}:${user}:comment`;
-  const commment = useSelector(s => s.comments[user]);
+  const comment = useSelector(s => s.comments[user]);
   const lockedId = useSelector(s => s.locks[lock]);
   const dispatch = useDispatch();
   const [focused, setFocused] = useState(false);
 
-  const { value, dirty } = commment || { value: '' };
+  const { value, dirty } = comment || { value: '' };
   const lockAcquired = lockedId === clientId;
   const status = focused ? (lockAcquired ? (dirty ? 'warning' : 'success') : 'danger') : (dirty ? 'danger' : 'success');
   const inputClassName = classNames('form-control', 'border', {
