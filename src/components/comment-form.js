@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import api, { clientId, task } from '../api/action-cable';
 import commentsSlice from '../state/comments';
@@ -55,9 +56,8 @@ const ResultForm = ({ user }) => {
   return (
     <div className='position-relative'>
       <div className='input-group'>
-        <input
+        <TextareaAutosize
           className={inputClassName}
-          type='text'
           style={{ width: 400 }}
           value={value}
           disabled={lockedId && !lockAcquired}
