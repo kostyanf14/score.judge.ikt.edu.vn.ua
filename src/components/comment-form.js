@@ -6,6 +6,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 import api, { clientId, task } from '../api/action-cable';
 import commentsSlice from '../state/comments';
 
+const DEFAULT_COMMENTS = ['Немає роботи', 'Робота з умови', 'Пустий файл', 'Пустий файл 0 Кб. Не відкривається.'];
+
 const ResultForm = ({ user }) => {
   const lock = `${task}:${user}:comment`;
   const comment = useSelector(s => s.comments[user]);
@@ -38,6 +40,14 @@ const ResultForm = ({ user }) => {
     [user, dispatch, lockAcquired]
   );
 
+  const onDropdownItemClick = useCallback(
+    e => {
+      api.perform('write_comment', { user, value: e.target.innerText });
+      api.perform('zero_results', { user });
+    },
+    [user]
+  );
+
   useEffect(
     () => dirty && api.perform('write_comment', { user, value, token: dirty }),
     [user, value, dirty]
@@ -55,15 +65,27 @@ const ResultForm = ({ user }) => {
 
   return (
     <div className='position-relative'>
-      <div className='input-group'>
+      <div className='input-group' style={{ minWidth: 400 }}>
         <TextareaAutosize
           className={inputClassName}
-          style={{ width: 400 }}
           value={value}
           disabled={lockedId && !lockAcquired}
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur} />
+        {!value && !dirty && <>
+          <button
+            className='btn btn-outline-secondary dropdown-toggle'
+            type='button'
+            data-bs-toggle='dropdown' />
+          <ul className='dropdown-menu dropdown-menu-end'>
+            {DEFAULT_COMMENTS.map((c, i) => <li key={i}>
+              <button className='dropdown-item' onClick={onDropdownItemClick}>
+                {c}
+              </button>
+            </li>)}
+          </ul>
+        </>}
       </div>
 
       {focused && <div className={`status-notice status-notice__${status}`}>
