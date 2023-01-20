@@ -26,19 +26,26 @@ export const DataX = ({ users, criteria }) => <>
 </>;
 
 const ResultsEditPage = () => {
+  const contest_name = useSelector(s => s.app.contest_name);
+  const task_name = useSelector(s => s.app.task_name);
   const users = useSelector(s => s.users);
   const criteriaProps = useSelector(s => s.criteria, shallowEqual);
   const [criteria, headerRows] = buildCriteria(criteriaProps);
 
   return (
-    <table className='table table-bordered table-hover border-dark with-sticky'>
-      <thead className='align-middle text-center sticky-top bg-white'>
-        <Header rows={headerRows} />
-      </thead>
-      <tbody className='align-middle text-center'>
-        <DataX users={users} criteria={criteria} />
-      </tbody>
-    </table>
+    <div className='p-2'>
+      <h2 className='mb-2'>Змагання: {contest_name}</h2>
+      <h2 className='mb-2'>Задача: {task_name}</h2>
+
+      <table className='table table-bordered table-hover border-dark with-sticky'>
+        <thead className='align-middle text-center sticky-top bg-white'>
+          <Header rows={headerRows} />
+        </thead>
+        <tbody className='align-middle text-center'>
+          <DataX users={users} criteria={criteria} />
+        </tbody>
+      </table>
+    </div>
   );
 };
 

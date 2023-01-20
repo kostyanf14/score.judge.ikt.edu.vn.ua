@@ -27,9 +27,14 @@ const CriteriaEditPage = ({ next }) => {
     next();
   }, [next]);
 
+  const contest_name = useSelector(s => s.app.contest_name);
+  const task_name = useSelector(s => s.app.task_name);
+
   return (
     <div className='p-2'>
       <h1 className='mb-2'>Критерії</h1>
+      <h2 className='mb-2'>Змагання: {contest_name}</h2>
+      <h2 className='mb-2'>Задача: {task_name}</h2>
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId='criteria'>
