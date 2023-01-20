@@ -22,6 +22,7 @@ export const buildCriteria = props => {
   const maxDepth = Math.max.apply(null, criteria.map(c => c.nameLevels.length));
 
   const headerRows = Array.from({ length: maxDepth + 1 }, () => []);
+  headerRows[0].push(buildInfoCell('#', maxDepth, 'bg-info'));
   headerRows[0].push(buildInfoCell('Код', maxDepth, 'bg-info sticky-left'));
 
   const colors = new RoundRobinIterator(['primary', 'secondary', 'success', 'warning']);
