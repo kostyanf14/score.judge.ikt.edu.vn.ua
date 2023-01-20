@@ -7,8 +7,9 @@ import UserSum from '../components/user-sum';
 import { buildCriteria } from '../models/criterion';
 
 export const DataX = ({ users, criteria }) => <>
-  {users.map(secret => (
+  {users.map((secret, index) => (
     <tr key={secret}>
+      <td className='bg-info'>{index + 1}</td>
       <td className='sticky-left bg-info'>{secret}</td>
       {criteria.map(criterion => (
         <td key={criterion.id} className={criterion.className}>
