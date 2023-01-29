@@ -7,6 +7,7 @@ import resultsSlice from '../state/results';
 
 const ResultForm = ({ user, criterion, max }) => {
   const lock = `${task}:${user}:${criterion}`;
+  const readOnly = useSelector(s => s.app.readOnly);
   const result = useSelector(s => s.results[user]?.[criterion], shallowEqual);
   const lockedId = useSelector(s => s.locks[lock]);
   const dispatch = useDispatch();
@@ -54,6 +55,10 @@ const ResultForm = ({ user, criterion, max }) => {
     },
     [user, criterion, dirty, lockAcquired]
   );
+
+  if (readOnly) {
+    return <div>{value}</div>;
+  }
 
   return (
     <div className='position-relative'>
