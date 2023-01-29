@@ -10,6 +10,7 @@ const DEFAULT_COMMENTS = ['Немає роботи', 'Робота з умови
 
 const ResultForm = ({ user }) => {
   const lock = `${task}:${user}:comment`;
+  const readOnly = useSelector(s => s.app.readOnly);
   const comment = useSelector(s => s.comments[user]);
   const lockedId = useSelector(s => s.locks[lock]);
   const dispatch = useDispatch();
@@ -62,6 +63,10 @@ const ResultForm = ({ user }) => {
     },
     [user, dirty, lockAcquired]
   );
+
+  if (readOnly) {
+    return <div>{value}</div>;
+  }
 
   return (
     <div className='position-relative'>

@@ -1,4 +1,7 @@
+import { useCallback } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
+
+import api from '../api/action-cable';
 
 import Header from '../components/results-table-header';
 import ResultForm from '../components/result-form';
@@ -27,11 +30,17 @@ export const DataX = ({ users, criteria }) => <>
 </>;
 
 const ResultsEditPage = () => {
+  const readOnly = useSelector(s => s.app.readOnly);
   const contest_name = useSelector(s => s.app.contest_name);
   const task_name = useSelector(s => s.app.task_name);
   const users = useSelector(s => s.users);
   const criteriaProps = useSelector(s => s.criteria, shallowEqual);
   const [criteria, headerRows] = buildCriteria(criteriaProps);
+
+  const finishCriterion = useCallback(
+    () => window.confirm(`Ви дійсно бажаєте завершити перевірку завдання "${task_name}"?`) && api.perform('finish'),
+    [task_name]
+  );
 
   return (
     <div className='p-2'>
@@ -46,6 +55,10 @@ const ResultsEditPage = () => {
           <DataX users={users} criteria={criteria} />
         </tbody>
       </table>
+
+      <div className='d-grid gap-2 mt-1'>
+        <button className='btn btn-primary' onClick={finishCriterion} disabled={readOnly}>Завершити перевірку</button>
+      </div>
     </div>
   );
 };

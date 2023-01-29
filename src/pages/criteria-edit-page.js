@@ -8,6 +8,7 @@ import api from '../api/action-cable';
 import criteriaSlice from '../state/criteria';
 
 const CriteriaEditPage = ({ next }) => {
+  const readOnly = useSelector(s => s.app.readOnly);
   const criteriaIds = useSelector(s => s.criteria.map(c => c.id), shallowEqual);
   const nextDisabled = useSelector(s => s.criteria.some(c => c.dirty));
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const CriteriaEditPage = ({ next }) => {
       </DragDropContext>
 
       <div className='d-grid gap-2 mt-1'>
-        <button className='btn btn-primary' onClick={addCriterion}>Додати критерій</button>
+        <button className='btn btn-primary' onClick={addCriterion} disabled={readOnly}>Додати критерій</button>
         <button className='btn btn-secondary' onClick={handleNext} disabled={nextDisabled}>Далі</button>
       </div>
 

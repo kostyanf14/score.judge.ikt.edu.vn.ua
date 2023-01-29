@@ -6,8 +6,9 @@ import api from '../api/action-cable';
 import criteriaSlice from '../state/criteria';
 
 const CriterionForm = ({ id }) => {
+  const readOnly = useSelector(s => s.app.readOnly);
   const { name, limit, dirty } = useSelector(s => s.criteria.find(c => c.id === id), shallowEqual);
-  const deleteDisabled = useSelector(s => Object.values(s.results).some(r => r[id]))
+  const deleteDisabled = useSelector(s => Object.values(s.results).some(r => r[id])) || readOnly
   const dispatch = useDispatch();
 
   const performDelete = useCallback(
@@ -32,12 +33,12 @@ const CriterionForm = ({ id }) => {
     <GripVertical size='25' />
 
     <div className='flex-grow-1 form-floating'>
-      <input className='form-control' type='text' value={name} min={0} onChange={onNameChange} />
+      <input className='form-control' type='text' disabled={readOnly} value={name} min={0} onChange={onNameChange} />
       <label>Назва критерію</label>
     </div>
 
     <div className='flex-grow-1 form-floating'>
-      <input className='form-control' type='number' value={limit} min={0} onChange={onLimitChange} />
+      <input className='form-control' type='number' disabled={readOnly} value={limit} min={0} onChange={onLimitChange} />
       <label>Кількість балів</label>
     </div>
 
