@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^7.0.1",
-    "@reduxjs/toolkit": "^1.8.6",
+    "@reduxjs/toolkit": "^1.9.2",
     "bootstrap": "^5.2.2",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
