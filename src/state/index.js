@@ -8,6 +8,7 @@ import errors from './errors';
 import locks from './locks';
 import results from './results';
 import comments from './comments';
+import judges from './judges';
 
 const store = configureStore({
   reducer: combineReducers({
@@ -18,6 +19,7 @@ const store = configureStore({
     locks: locks.reducer,
     results: results.reducer,
     comments: comments.reducer,
+    judges: judges.reducer,
   })
 });
 
