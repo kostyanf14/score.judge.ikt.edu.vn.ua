@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@rails/actioncable": "^7.0.1",
+    "@rails/actioncable": "^7.0.7-2",
     "@reduxjs/toolkit": "^1.9.5",
     "bootstrap": "^5.3.1",
     "classnames": "^2.3.2",
