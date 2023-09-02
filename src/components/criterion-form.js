@@ -42,7 +42,7 @@ const CriterionForm = ({ id }) => {
       <label>Кількість балів</label>
     </div>
 
-    <button className='btn btn-outline-secondary align-self-stretch' disabled={deleteDisabled} onClick={performDelete}>
+    <button className='btn btn-outline-danger align-self-stretch' disabled={deleteDisabled} onClick={performDelete}>
       <Trash />
     </button>
   </div>;
