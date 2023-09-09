@@ -42,7 +42,11 @@ const ResultForm = ({ user, criterion, max }) => {
   );
 
   useEffect(
-    () => dirty && api.perform('write_result', { user, criterion, value, token: dirty }),
+    () => {
+      const looksValid = typeof(value) === "number" || (value !== "" && !value.endsWith('.'));
+      if (dirty && looksValid)
+        api.perform('write_result', { user, criterion, value, token: dirty })
+    },
     [user, criterion, value, dirty]
   );
 
