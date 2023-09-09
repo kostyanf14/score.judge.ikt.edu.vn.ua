@@ -6,7 +6,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 import api, { clientId, task } from '../api/action-cable';
 import commentsSlice from '../state/comments';
 
-const DEFAULT_COMMENTS = ['Немає роботи', 'Робота з умови', 'Пустий файл', 'Пустий файл 0 Кб. Не відкривається.'];
+const DEFAULT_COMMENTS = ['Немає роботи', 'Робота з умови', 'Пустий файл',
+                          'Пустий файл 0 Кб. Не відкривається.', 'Не відкривається (не пустий файл)'];
 
 const ResultForm = ({ user }) => {
   const lock = `${task}:${user}:comment`;
