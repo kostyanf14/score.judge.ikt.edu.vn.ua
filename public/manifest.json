@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "IKT Judge Scoring",
+  "name": "IKT Judge Scoring System",
+  "author": "Amnis Invictus",
   "icons": [
     {
       "src": "favicon.ico",
