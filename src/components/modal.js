@@ -7,20 +7,20 @@ const ModalButton = ({ name, children, ...buttonProps }) => (
 );
 
 const ModalHeader = ({ title }) => (
-  <div class='modal-header'>
-    <h2 class='modal-title fs-5'>{title}</h2>
-    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+  <div className='modal-header'>
+    <h2 className='modal-title fs-5'>{title}</h2>
+    <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
   </div>
 );
 
 const ModalBody = ({ children }) => (
-  <div class='modal-body'>
+  <div className='modal-body'>
     {children}
   </div>
 );
 
 const ModalFooter = ({ children }) => (
-  <div class='modal-footer'>
+  <div className='modal-footer'>
     {children}
   </div>
 );
@@ -45,9 +45,9 @@ const Modal = ({ name, onShow, onHide, children }) => {
   }, [onHide, modalRef]);
 
   return (
-    <div ref={modalRef} class='modal fade' id={name} tabindex='-1' aria-hidden='true'>
-      <div class='modal-dialog'>
-        <div class='modal-content'>
+    <div ref={modalRef} className='modal fade' id={name} tabIndex='-1' aria-hidden='true'>
+      <div className='modal-dialog'>
+        <div className='modal-content'>
           {children}
         </div>
       </div>
