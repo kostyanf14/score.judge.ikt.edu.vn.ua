@@ -5,6 +5,7 @@ import { ArrowRightSquareFill } from 'react-bootstrap-icons';
 import ResultsTablePreview from '../components/results-table-preview';
 import CriteriaListAccordionItem from '../components/criteria-list-accordion-item';
 import JudgesListAccordionItem from '../components/judges-list-accordion-item';
+import ResultMultiplierAccordionItem from '../components/result-multiplier-accordion-item';
 
 const CriteriaEditPage = ({ next }) => {
   const nextDisabled = useSelector(s => s.criteria.some(c => c.dirty));
@@ -29,6 +30,7 @@ const CriteriaEditPage = ({ next }) => {
       <div id='page-accordion' className='accordion accordion-flush'>
         <CriteriaListAccordionItem />
         <JudgesListAccordionItem />
+        <ResultMultiplierAccordionItem />
       </div>
 
       <button className='btn btn-primary mt-1  d-block w-100 text-center' onClick={handleNext} disabled={nextDisabled}>

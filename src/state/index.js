@@ -9,6 +9,7 @@ import locks from './locks';
 import results from './results';
 import comments from './comments';
 import judges from './judges';
+import resultMultiplier from './result-multiplier';
 
 const store = configureStore({
   reducer: combineReducers({
@@ -20,6 +21,7 @@ const store = configureStore({
     results: results.reducer,
     comments: comments.reducer,
     judges: judges.reducer,
+    resultMultiplier: resultMultiplier.reducer,
   })
 });
 
