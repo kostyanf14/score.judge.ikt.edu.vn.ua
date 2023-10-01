@@ -7,6 +7,7 @@ import Header from '../components/results-table-header';
 import ResultForm from '../components/result-form';
 import CommentForm from '../components/comment-form';
 import UserSum from '../components/user-sum';
+import UserResult from '../components/user-result';
 import { buildCriteria } from '../models/criterion';
 
 export const DataX = ({ users, criteria }) => <>
@@ -23,6 +24,9 @@ export const DataX = ({ users, criteria }) => <>
         <UserSum user={secret} />
       </td>
       <td>
+        <UserResult user={secret} />
+      </td>
+      <td>
         <CommentForm user={secret} />
       </td>
     </tr>
@@ -35,7 +39,10 @@ const ResultsEditPage = () => {
   const task_name = useSelector(s => s.app.task_name);
   const users = useSelector(s => s.users);
   const criteriaProps = useSelector(s => s.criteria, shallowEqual);
-  const [criteria, headerRows] = buildCriteria(criteriaProps);
+  const rmValue = useSelector(s => s.resultMultiplier).split('/');
+  const rmNumerator = parseInt(rmValue[0]);
+  const rmDenominator = rmValue[1] ? parseInt(rmValue[1]) : 1;
+  const [criteria, headerRows] = buildCriteria(criteriaProps, rmNumerator, rmDenominator);
 
   const finishCriterion = useCallback(
     () => window.confirm(`Ви дійсно бажаєте завершити перевірку завдання "${task_name}"?`) && api.perform('finish'),

@@ -17,7 +17,7 @@ class Criterion {
 const buildInfoCell = (text, maxDepth, className = 'bg-info bg-opacity-25') =>
   ({ text, key: text, rowSpan: maxDepth + 1, className });
 
-export const buildCriteria = props => {
+export const buildCriteria = (props, rmNumerator, rmDenominator)  => {
   const criteria = props.map(p => new Criterion(p));
   const maxDepth = Math.max.apply(null, criteria.map(c => c.nameLevels.length));
 
@@ -58,10 +58,13 @@ export const buildCriteria = props => {
   }
 
   headerRows[0].push(buildInfoCell('Cума', maxDepth - 1));
+  headerRows[0].push(buildInfoCell('Результат', maxDepth - 1));
   headerRows[0].push(buildInfoCell('Коментар', maxDepth));
   headerRows[maxDepth] = criteria.map(({ id, limit, className }) => ({ key: id, text: limit, className }));
   const sum = criteria.map(item => item.limit).filter(x => x).reduce((prev, next) => prev + parseFloat(next), 0);
-  headerRows[maxDepth].push({ key: 'id', text: sum, className: 'bg-info bg-opacity-25' })
+  const result = sum * rmNumerator / rmDenominator;
+  headerRows[maxDepth].push({ key: 'id_sum', text: sum, className: 'bg-info bg-opacity-25' })
+  headerRows[maxDepth].push({ key: 'id_result', text: result, className: 'bg-info bg-opacity-25' })
 
   return [criteria, headerRows.map(compact)];
 };
