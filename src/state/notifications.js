@@ -11,7 +11,8 @@ const slice = createSlice({
       if (!permittedKinds.includes(kind))
         return
 
-      toast[kind](message);
+      const options = kind === 'error' ? {} : { autoClose: 2000 };
+      toast[kind](message, options);
     },
   }
 });
