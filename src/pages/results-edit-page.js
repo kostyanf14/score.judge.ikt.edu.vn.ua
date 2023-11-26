@@ -53,6 +53,7 @@ const ResultsEditPage = () => {
     <div className='p-2'>
       <h2 className='mb-2'>Змагання: {contest_name}</h2>
       <h2 className='mb-2'>Задача: {task_name}</h2>
+      {readOnly && <div className='alert alert-warning'>Перевірку завершено</div>}
 
       <table className='table table-bordered table-hover border-dark with-sticky'>
         <thead className='align-middle text-center sticky-top bg-white'>
@@ -63,9 +64,9 @@ const ResultsEditPage = () => {
         </tbody>
       </table>
 
-      <div className='d-grid gap-2 mt-1'>
-        <button className='btn btn-primary' onClick={finishCriterion} disabled={readOnly}>Завершити перевірку</button>
-      </div>
+      {!readOnly && <div className='d-grid gap-2 mt-1'>
+        <button className='btn btn-primary' onClick={finishCriterion}>Завершити перевірку</button>
+      </div>}
     </div>
   );
 };
