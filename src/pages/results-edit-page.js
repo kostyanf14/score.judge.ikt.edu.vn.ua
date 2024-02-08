@@ -49,11 +49,21 @@ const ResultsEditPage = () => {
     [task_name]
   );
 
+  const zeroNoSolution = useCallback(
+    () => window.confirm(`Ви дійсно бажаєте заповнити 0 для відсутніх робіт до завдання "${task_name}"?`)
+      && api.perform('zero_no_solution'),
+    [task_name]
+  );
+
   return (
     <div className='p-2'>
       <h2 className='mb-2'>Змагання: {contest_name}</h2>
       <h2 className='mb-2'>Задача: {task_name}</h2>
       {readOnly && <div className='alert alert-warning'>Перевірку завершено</div>}
+
+      {!readOnly && <div className='d-grid gap-2 my-3'>
+        <button className='btn btn-primary' onClick={zeroNoSolution}>Заповнити 0 для відсутніх робіт</button>
+      </div>}
 
       <table className='table table-bordered table-hover border-dark with-sticky'>
         <thead className='align-middle text-center sticky-top bg-white'>
