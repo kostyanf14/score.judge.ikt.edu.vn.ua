@@ -9,7 +9,7 @@
   },
   "author": "Amnis Invictus",
   "dependencies": {
-    "@rails/actioncable": "^7.2.100",
+    "@rails/actioncable": "^7.2.101",
     "@reduxjs/toolkit": "^1.9.6",
     "bootstrap": "^5.3.3",
     "classnames": "^2.5.1",
